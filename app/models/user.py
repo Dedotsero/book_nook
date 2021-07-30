@@ -10,6 +10,12 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    user_book_id = db.Column(db.Integer, db.ForeignKey(
+        "userbooks.id", ondelete="CASCADE"), nullable=False)
+
+    user_books = db.relationship("UserBooks", back_populates="user_book")
+    comments = db.relationship(
+        "Comments", back_populates="user", passive_deletes=True)
 
     @property
     def password(self):
@@ -26,5 +32,6 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'user_book_id': self.user_book_id
         }
