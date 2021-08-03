@@ -1,4 +1,4 @@
-from.db import db
+from .db import db
 
 class Books(db.Model):
 
@@ -10,14 +10,12 @@ class Books(db.Model):
     publication_date = db.Column(db.String, nullable=False)
     page_count = db.Column(db.Integer, nullable=False)
     book_cover_url = db.Column(db.String, nullable=False)
-    synopsis = db.Column(db.Text, nullable=False)
+    synopsis = db.Column(db.Text)
     isbn_10 = db.Column(db.String, unique=True)
-    isbn_13 = db.Column(db.Integer, unique=True)
-    user_book_id = db.Column(db.Integer, db.ForeignKey(
-        "userbooks.id", ondelete="CASCADE"), nullable=False)
+    isbn_13 = db.Column(db.String, unique=True)
 
-    user_books = db.relationship("UserBook", back_populates="books")
-    comment = db.relationship(
+    owner = db.relationship("UserBooks", back_populates="books")
+    comments = db.relationship(
         "Comments", back_populates="book", passive_deletes=True)
 
     def to_dict(self):
@@ -31,5 +29,4 @@ class Books(db.Model):
             "synopsis": self.synopsis,
             "isbn_10": self.isbn_10,
             "isbn_13": self.isbn_13,
-            "user_book_id": self.user_book_id
         }

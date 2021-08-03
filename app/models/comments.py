@@ -11,7 +11,7 @@ class Comments(db.Model):
         "books.id", ondelete="CASCADE"), nullable=False)
 
     user = db.relationship("User", back_populates="comments")
-    book = db.relationship("Book", back_populates="comments")
+    book = db.relationship("Books", back_populates="comments")
 
     def to_dict(self):
         return {

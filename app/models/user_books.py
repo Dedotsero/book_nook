@@ -1,5 +1,5 @@
 from app.models import books
-from.db import db
+from .db import db
 
 class UserBooks(db.Model):
 
@@ -12,9 +12,9 @@ class UserBooks(db.Model):
         "users.id", ondelete="CASCADE"), nullable=False)
 
     users = db.relationship(
-        "Users", back_populates="user_books", passive_deletes=True)
+        "User", back_populates="owner", passive_deletes=True)
     books = db.relationship(
-        "Books", back_populates="user_books", passive_deletes=True)
+        "Books", back_populates="owner", passive_deletes=True)
 
     def to_dict(self):
         return {

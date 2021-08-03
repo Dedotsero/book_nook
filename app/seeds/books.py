@@ -10,8 +10,7 @@ def seed_books():
         book_cover_url="http://covers.openlibrary.org/b/isbn/9780142427330-M.jpg",
         synopsis="As Morgarath recruits an army of Wargals, Halt ventures into enemy territory to uncover the extent of Morgarath's plan of attack.",
         isbn_10="0142427330",
-        isbn_13=9780142427330,
-        user_books_id=1
+        isbn_13="9780142427330",
     )
 
     db.session.add(user1book1)
