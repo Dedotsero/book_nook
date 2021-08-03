@@ -2,7 +2,7 @@ from app.models import db, Books
 
 
 def seed_books():
-    user1book1 = Books(
+    book1 = Books(
         author="Flanagan, John",
         title="The Battle of Hackham Heath",
         publication_date="Oct 10, 2017",
@@ -13,7 +13,7 @@ def seed_books():
         isbn_13="9780142427330",
     )
 
-    db.session.add(user1book1)
+    db.session.add(book1)
 
     db.session.commit()
 

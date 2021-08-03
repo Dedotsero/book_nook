@@ -2,18 +2,20 @@ from flask import Blueprint, jsonify, request
 from sqlalchemy import or_
 import requests
 from flask_login import login_required, current_user
-from app.models import db, Books, UserBooks
+from app.models import db, Books, User
 
 books_routes = Blueprint("books", __name__)
 
 @books_routes.route("/")
 # @login_required
 def library():
-    library_users = UserBooks.query.filter(
-        UserBooks.user_id == current_user.id).all()
+    library_users = User.query.filter(
+        User.id == current_user.id).all()
     # library_books = UserBooks.query.filter(
     #     UserBooks.book_id == current_user.id).all()
-    return {"library" : [book.to_dict() for book in library_users]}, 200
+    return {"library" : [book.to_dict() for book in library_users]}
+
+@books_routes.route
 
 
 @books_routes.route("/<isbn>", methods=["POST", "DELETE"])
@@ -21,8 +23,8 @@ def library():
 def library_update(isbn):
     if request.method == "POST":
         # return {"beat" : isbn}, 200
-        book_already_in_library = UserBooks.query.filter(
-            UserBooks.user_id == current_user.id,
+        book_already_in_library = User.query.filter(
+            User.user_id == current_user.id,
             or_(Books.isbn_13 == isbn,
             Books.isbn_10 == isbn)
         ).one_or_none()
@@ -63,8 +65,8 @@ def library_update(isbn):
         db.session.commit()
         return new_book.to_dict()
     elif request.method == "DELETE":
-        deleted_book = UserBooks.query.filter(
-            UserBooks.user_id == current_user.id,
+        deleted_book = User.query.filter(
+            User.user_id == current_user.id,
             Books.isbn_13 == isbn,
             Books.isbn_10 == isbn
         ).one_or_none()

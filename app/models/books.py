@@ -14,7 +14,7 @@ class Books(db.Model):
     isbn_10 = db.Column(db.String, unique=True)
     isbn_13 = db.Column(db.String, unique=True)
 
-    owner = db.relationship("UserBooks", back_populates="books")
+    owner = db.relationship("CollectionBooks", back_populates="books")
     comments = db.relationship(
         "Comments", back_populates="book", passive_deletes=True)
 
