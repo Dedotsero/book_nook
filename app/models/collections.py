@@ -10,7 +10,8 @@ class Collections(db.Model):
         "users.id", ondelete="CASCADE"), nullable=False)
 
     owner = db.relationship("CollectionBooks", back_populates="collections")
-    user = db.relationship("User", back_populates="collections")
+    users = db.relationship(
+        "User", back_populates="collections", passive_deletes=True)
 
     def to_dict(self):
         return {

@@ -11,7 +11,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-    owner = db.relationship("Collections", back_populates="users")
+    collections = db.relationship("Collections", back_populates="users")
     comments = db.relationship(
         "Comments", back_populates="user", passive_deletes=True)
 

@@ -2,7 +2,7 @@ from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .books import seed_books, undo_books
 from .collection_books import seed_collection_books, undo_collection_books
-# from .collection import seed_collection, undo_collection
+from .collections import seed_collections, undo_collections
 from .comments import seed_comments, undo_comments
 
 # Creates a seed group to hold our commands
@@ -15,9 +15,9 @@ seed_commands = AppGroup('seed')
 def seed():
     seed_users()
     seed_books()
+    seed_collections()
     seed_collection_books()
     seed_comments()
-    # seed_collection()
     # Add other seed functions here
 
 
@@ -26,7 +26,7 @@ def seed():
 def undo():
     undo_users()
     undo_books()
+    undo_collections()
     undo_collection_books()
     undo_comments()
-    # undo_collection()
     # Add other undo functions here
