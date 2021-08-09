@@ -73,7 +73,7 @@ export default function reducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_COMMENTS:
       newState = {}
-      action.comments.forEach(comment => {
+      action.comments.comment.forEach(comment => {
         newState[comment.id] = comment
       })
       return newState

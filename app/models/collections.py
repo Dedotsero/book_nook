@@ -12,10 +12,13 @@ class Collections(db.Model):
     owner = db.relationship("CollectionBooks", back_populates="collections")
     users = db.relationship(
         "User", back_populates="collections", passive_deletes=True)
+    books = db.relationship(
+        "Books", secondary="collection_books", back_populates="collections")
 
     def to_dict(self):
         return {
             "id": self.id,
             "name": self.name,
-            "user_id": self.user_id
+            "user_id": self.user_id,
+            "books": [b.to_dict() for b in self.books]
         }

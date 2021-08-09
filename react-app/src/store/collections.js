@@ -30,7 +30,7 @@ const removeCollection = (collection) => ({
 })
 
 export const getCollections = () => async (dispatch) => {
-  const response = await fetch(`api/collections/`)
+  const response = await fetch(`/api/collections/`)
   if (response.ok) {
     const collections = await response.json()
     dispatch(loadCollections(collections))
@@ -38,7 +38,7 @@ export const getCollections = () => async (dispatch) => {
 }
 
 export const getOneCollection = (id) => async (dispatch) => {
-  const response = await fetch(`api/collections/${id}`)
+  const response = await fetch(`/api/collections/${id}`)
   if (response.ok) {
     const collection = await response.json()
     dispatch(loadOneCollection(collection))
@@ -46,7 +46,7 @@ export const getOneCollection = (id) => async (dispatch) => {
 }
 
 export const createCollection = (collection) => async (dispatch) => {
-  const response = await fetch(`api/collections/`, {
+  const response = await fetch(`/api/collections/`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(collection)
@@ -58,7 +58,7 @@ export const createCollection = (collection) => async (dispatch) => {
 }
 
 export const editCollection = (id, collection) => async (dispatch) => {
-  const response = await fetch(`api/collections/${id}`, {
+  const response = await fetch(`/api/collections/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(collection)
@@ -70,7 +70,7 @@ export const editCollection = (id, collection) => async (dispatch) => {
 }
 
 export const deleteCollection = (id) => async (dispatch) => {
-  const response = await fetch(`api/collections/${id}`, {
+  const response = await fetch(`/api/collections/${id}`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" }
   })
@@ -87,19 +87,18 @@ export default function reducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_COLLECTIONS:
       newState = {}
-      action.collections.forEach(collection => {
+      action.collections.collection.forEach(collection => {
         newState[collection.id] = collection
       })
       return {
-        ...state,
         ...newState
       }
     case LOAD_ONE_COLLECTION:
       newState = {}
-      newState[action.collection.id] = action.collection
+      newState["current"] = action.collection
       return {
         ...state,
-        ...newState
+        // "current":
       }
     case ADD_COLLECTION:
       return {

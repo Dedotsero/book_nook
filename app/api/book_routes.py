@@ -2,27 +2,23 @@ from flask import Blueprint, jsonify, request
 from sqlalchemy import or_
 import requests
 from flask_login import login_required, current_user
-from app.models import db, Books, User, CollectionBooks, Collections
+from app.models import db, Books, User
 
 books_routes = Blueprint("books", __name__)
 
 @books_routes.route("/")
 # @login_required
 def library():
-    library_users = Collections.query.filter(
-        Collections.user_id == current_user.id).all()
-    library_books = CollectionBooks.query.filter(
-        CollectionBooks.book_id).all()
+    library_books = Books.query.all()
     return {"library" : [book.to_dict() for book in library_books]}
 
 @books_routes.route("/<isbn>")
 # @login_required
 def get_book(isbn):
-    book_in_library = User.query.filter(
-        User.id == current_user.id,
+    book_in_library = Books.query.filter(
         or_(Books.isbn_13 == isbn,
         Books.isbn_10 == isbn)
-    ).one_or_none
+    ).one()
     if book_in_library:
         return book_in_library.to_dict()
 

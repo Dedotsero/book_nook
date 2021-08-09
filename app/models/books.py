@@ -17,6 +17,8 @@ class Books(db.Model):
     owner = db.relationship("CollectionBooks", back_populates="books")
     comments = db.relationship(
         "Comments", back_populates="book", passive_deletes=True)
+    collections = db.relationship(
+        "Collections", secondary="collection_books", back_populates="books")
 
     def to_dict(self):
         return {
