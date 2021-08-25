@@ -33,10 +33,10 @@ function NavBar({ loaded }) {
         <div>
           <ul className='nav_ul'>
             <li>
-              <NavLink to="/login" className='nav_li'>Login</NavLink>
+              <NavLink to="/login" className='nav_login'>Login</NavLink>
             </li>
             <li>
-              <NavLink to="/signup" className='nav_li'>Signup</NavLink>
+              <NavLink to="/sign-up" className='nav_signup'>Signup</NavLink>
             </li>
           </ul>
         </div>
