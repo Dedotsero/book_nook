@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { NavLink } from "react-router-dom"
-import { getCollections } from "../store/collections"
+import { getCollections } from "../../store/collections"
 import SingleCollection from "./SingleCollection"
 
 function Collection() {

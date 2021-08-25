@@ -3,61 +3,63 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import LoginForm from './components/auth/LoginForm'
 import SignUpForm from './components/auth/SignUpForm'
-import NavBar from './components/NavBar'
+import NavBar from './components/Navigation/NavBar'
 import ProtectedRoute from './components/auth/ProtectedRoute'
 import UsersList from './components/UsersList'
 import User from './components/User'
 import { authenticate } from './store/session'
-import Collection from './components/Collections'
-import SingleCollection from './components/SingleCollection'
+import Collection from './components/Collections/Collections'
+import SingleCollection from './components/Collections/SingleCollection'
 import Book from './components/Books'
 
 function App() {
-  const [loaded, setLoaded] = useState(false);
-  const dispatch = useDispatch();
+  const [loaded, setLoaded] = useState(false)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     (async() => {
-      await dispatch(authenticate());
-      setLoaded(true);
-    })();
-  }, [dispatch]);
+      await dispatch(authenticate())
+      setLoaded(true)
+    })()
+  }, [dispatch])
 
   if (!loaded) {
-    return null;
+    return null
   }
 
   return (
     <BrowserRouter>
-      <NavBar />
-      <Switch>
-        <Route path='/login' exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
-        </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
-        </ProtectedRoute>
-        <ProtectedRoute exact={true} path='/collections/:collectionId'>
-          <SingleCollection />
-        </ProtectedRoute>
-        <ProtectedRoute exact path='/collections'>
-          <Collection />
-        </ProtectedRoute>
-        <ProtectedRoute path='/books'>
-          <Book />
-        </ProtectedRoute>
-      </Switch>
+      <NavBar loaded={loaded} />
+      {loaded && (
+        <Switch>
+          <Route path='/login' exact={true}>
+            <LoginForm />
+          </Route>
+          <Route path='/sign-up' exact={true}>
+            <SignUpForm />
+          </Route>
+          <ProtectedRoute path='/users' exact={true} >
+            <UsersList/>
+          </ProtectedRoute>
+          <ProtectedRoute path='/users/:userId' exact={true} >
+            <User />
+          </ProtectedRoute>
+          <ProtectedRoute path='/' exact={true} >
+            <h1>My Home Page</h1>
+          </ProtectedRoute>
+          <ProtectedRoute exact={true} path='/collections/:collectionId'>
+            <SingleCollection />
+          </ProtectedRoute>
+          <ProtectedRoute exact path='/collections'>
+            <Collection />
+          </ProtectedRoute>
+          <ProtectedRoute path='/books'>
+            <Book />
+          </ProtectedRoute>
+        </Switch>
+      )}
     </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+export default App

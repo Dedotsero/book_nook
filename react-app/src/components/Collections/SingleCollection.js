@@ -1,7 +1,7 @@
 import React, { useEffect} from "react"
 import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { getOneCollection } from "../store/collections"
+import { getOneCollection } from "../../store/collections"
 import Collection from "./Collections"
 
 
@@ -17,12 +17,16 @@ function SingleCollection({collection}) {
 
   return (
     <div>
-      {JSON.stringify(collection)}
-      {/* {Object.keys(books).map(child => {
-        return (
-          <li key={books[child]?.book_cover_url}>{books[child]?.book_cover_url}</li>
-        )
-      })} */}
+      {JSON.stringify(collection.books)}
+      <div>
+        {Object.keys(collection.books).map(child => {
+          return (
+            <div key={collection.books[child].title}>
+              <img src={collection.books[child].book_cover_url} alt="" />
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }
