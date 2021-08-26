@@ -1,0 +1,8 @@
+.home-container {
+  height: 909px;
+  width: 1920px;
+  background-color: tomato;
+  background-image: url(../../Images/bookshelfbackground.png);
+  background-position: center;
+  background-size: 100% 750px;
+}
