@@ -1,16 +1,17 @@
 .nav_ul {
   margin: auto;
-  width: 100%;
+  width: 1920px;
   height: 60px;
   list-style: none;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #444444;
+  padding: 0%;
 }
 
 .nav_li {
-  font-family: 'Univers LT W01 45 Light';
+  font-family: "Univers LT W01 45 Light";
   font-size: 20px;
   margin-right: 10px;
   margin-left: 10px;
@@ -22,7 +23,7 @@
 }
 
 .nav_login {
-  font-family: 'Univers LT W01 45 Light';
+  font-family: "Univers LT W01 45 Light";
   font-size: 20px;
   margin-right: 10px;
   margin-left: 10px;
@@ -34,7 +35,7 @@
 }
 
 .nav_signup {
-  font-family: 'Univers LT W01 45 Light';
+  font-family: "Univers LT W01 45 Light";
   font-size: 20px;
   margin-right: 10px;
   margin-left: 10px;
@@ -58,7 +59,7 @@
 }
 
 .nav_book {
-  font-family: 'Univers LT W01 45 Light';
+  font-family: "Univers LT W01 45 Light";
   font-size: 20px;
   margin-right: 10px;
   margin-left: 10px;
@@ -70,7 +71,7 @@
 }
 
 .nav_title {
-  font-family: 'Univers LT W01 45 Light';
+  font-family: "Univers LT W01 45 Light";
   font-size: 40px;
   margin-right: 10px;
   margin-left: 10px;
