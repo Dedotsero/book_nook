@@ -11,7 +11,7 @@ import { authenticate } from "./store/session"
 import Collection from "./components/Collections/Collections"
 import SingleCollection from "./components/Collections/SingleCollection"
 import Book from "./components/Books"
-import HomeSplash from "./components/Splash/splash"
+import HomeSplash from "./components/HomeSplash/HomeSplash"
 
 function App() {
   const [loaded, setLoaded] = useState(false)
@@ -45,9 +45,9 @@ function App() {
           <ProtectedRoute path="/users/:userId" exact={true} >
             <User />
           </ProtectedRoute>
-          <ProtectedRoute path="/" exact={true} >
+          <Route path="/" exact={true} >
             <HomeSplash />
-          </ProtectedRoute>
+          </Route>
           <ProtectedRoute exact={true} path="/collections/:collectionId">
             <SingleCollection />
           </ProtectedRoute>

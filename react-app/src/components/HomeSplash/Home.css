@@ -1,0 +1,11 @@
+.home-container {
+  height: 909px;
+  width: 1920px;
+  background-image: url(../../Images/bookshelfbackground.png);
+  background-position: center;
+  background-size: 100% 750px;
+}
+
+.home-title {
+  margin:0
+}
