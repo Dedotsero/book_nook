@@ -27,7 +27,8 @@ function NavBar({ loaded }) {
         </ul>
       </nav>
     )
-  } else {
+  }
+  else {
     sessionLinks = (
       <>
         <div>

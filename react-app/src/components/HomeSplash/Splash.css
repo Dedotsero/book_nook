@@ -1,0 +1,13 @@
+.splash-container {
+  height: 909px;
+  width: 1920px;
+  background-image: url(../../Images/bookbackground.png);
+  background-position: center;
+  background-size: 100% 909px;
+  background-repeat: no-repeat;
+}
+
+.splash-title {
+  margin: 0;
+  color: aqua;
+}
