@@ -55,7 +55,6 @@
   position: absolute;
   right: 1%;
   top: 18px;
-  border: solid blue;
 }
 
 .nav_book {
@@ -78,4 +77,10 @@
   color: rgb(255,255,200);
   text-decoration: none;
   position: absolute;
+}
+
+.nav_user {
+  position: absolute;
+  right: 1%;
+  top: 18px;
 }

@@ -2,6 +2,7 @@ import React from "react"
 import { useSelector } from "react-redux"
 import { NavLink } from "react-router-dom"
 import LogoutButton from "../auth/LogoutButton"
+import SignUpFormModal from "../auth/SignUpModal"
 import "./Navigation.css"
 import AddBookButton from "../Books/AddBookButton"
 
@@ -21,6 +22,9 @@ function NavBar({ loaded }) {
           <li className="nav_book">
             <AddBookButton />
           </li>
+          <li className="nav_user">
+            Welcome {user.username}
+          </li>
           <li className="nav_logout">
             <LogoutButton />
           </li>
@@ -36,8 +40,8 @@ function NavBar({ loaded }) {
             <li>
               <NavLink to="/login" className="nav_login">Login</NavLink>
             </li>
-            <li>
-              <NavLink to="/sign-up" className="nav_signup">Signup</NavLink>
+            <li className="nav_signup">
+              <SignUpFormModal />
             </li>
           </ul>
         </div>
