@@ -39,6 +39,4 @@ class User(db.Model, UserMixin):
             Collections.user_id == self.id,
             Collections.default.is_(True)
         ).one()
-        return {
-            default_collection
-        }
+        return default_collection.id
