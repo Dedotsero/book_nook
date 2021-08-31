@@ -14,6 +14,7 @@ const BookForm = () => {
     e.preventDefault()
     setErrors([])
     const data = await dispatch(createBook(isbn))
+    // setIsbn("")
     if(data) {
       setErrors(data)
     }

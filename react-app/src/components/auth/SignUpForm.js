@@ -21,6 +21,9 @@ const SignUpForm = () => {
         setErrors(data)
       }
     }
+    else{
+      return setErrors(["Passwords must Match"])
+    }
   }
 
   const updateUsername = (e) => {
@@ -47,18 +50,18 @@ const SignUpForm = () => {
     <div id="signup-form">
       <form onSubmit={onSignUp}>
         <div>
+          <div className="signup-title">
+            <h2>SIGN UP</h2>
+          </div>
           <ul>
             {errors.map((error, ind) => (
               <div key={ind}>{error}</div>
               ))}
           </ul>
         </div>
-        <div className="signup-title">
-          <h2>SIGN UP</h2>
-        </div>
         <div>
           <label id="username-label">
-            User Name
+            Username
           </label>
           <div className="username-signup-input-container">
             <input

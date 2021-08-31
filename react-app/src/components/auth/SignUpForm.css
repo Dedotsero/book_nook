@@ -88,3 +88,7 @@ h2{
 #signup-cancel:hover{
   border-color: rgba(0,0,0,1);
 }
+
+ul {
+  text-align: center;
+}

@@ -111,3 +111,12 @@ h2 {
 #login-cancel:hover {
   border-color: rgba(0,0,0,1);
 }
+
+.errors {
+padding-bottom: 10px;
+width: 100%;
+}
+
+ul {
+  padding-left: 0;
+}

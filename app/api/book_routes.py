@@ -27,15 +27,25 @@ def get_book(isbn):
 # @login_required
 def library_update(isbn):
     if request.method == "POST":
-        book_already_in_library = User.query.filter(
-            User.id == current_user.id,
+        book_already_in_library = Books.query.filter(
             or_(Books.isbn_13 == isbn,
             Books.isbn_10 == isbn)
         ).one_or_none()
 
         if book_already_in_library:
+            print(">>>>>>>>>>>>>>>>>>", current_user.id)
+            add_to_default = CollectionBooks(
+            collection_id = current_user.default(),
+            book_id = book_already_in_library.id
+        )
+            db.session.add(add_to_default)
+            db.session.commit()
             return book_already_in_library.to_dict()
         isbn_response = requests.get(f"https://openlibrary.org/isbn/{isbn}.json").json()
+        if "error" in isbn_response:
+            return {
+                "error": isbn_response["error"]
+            }
         # print(">>>>>>>>>>>>>>>>>", isbn_response)
         title = isbn_response["title"]
         publication_date = isbn_response["publish_date"]
@@ -66,11 +76,12 @@ def library_update(isbn):
             isbn_13=isbn_13
         )
         db.session.add(new_book)
+        add_to_default = CollectionBooks(
+            collection_id = current_user.default(),
+            book_id = new_book.id
+        )
+        db.session.add(add_to_default)
         db.session.commit()
-        CollectionBooks.insert().values([
-            {"collections_id": User.default()},
-            {"book_id": new_book.id}
-        ])
         return new_book.to_dict()
     elif request.method == "DELETE":
         deleted_book = User.query.filter(

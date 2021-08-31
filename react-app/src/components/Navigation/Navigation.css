@@ -58,7 +58,6 @@
 .nav_logout {
   position: absolute;
   right: 1%;
-  top: 18px;
 }
 
 .nav_book {
@@ -71,7 +70,6 @@
   text-decoration: none;
   position: absolute;
   right: 21%;
-  /* top: 18px; */
 }
 
 .nav_title {
@@ -86,8 +84,9 @@
 
 .nav_user {
   position: absolute;
-  right: 5%;
+  left: 5%;
   top: 18px;
+  color: rgb(255,255,200);
 }
 
 button {

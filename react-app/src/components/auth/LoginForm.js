@@ -23,9 +23,7 @@ const LoginForm = () => {
   const handleDemo = async (e) => {
     e.preventDefault()
     setErrors([])
-    await setEmail("demo@aa.io")
-    await setPassword("password")
-    const data = await dispatch(login(email, password))
+    const data = await dispatch(login("demo@aa.io", "password"))
     if (data) {
       setErrors(data)
     }
@@ -52,7 +50,7 @@ const LoginForm = () => {
         <div>
           <ul>
             {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
+              <div className="errors" key={ind}>{error}</div>
             ))}
           </ul>
         </div>

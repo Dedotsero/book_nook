@@ -20,6 +20,12 @@ def username_exists(form, field):
         raise ValidationError('Username is already in use.')
 
 
+# def small_password(form, field):
+#     password = field.data
+#     if len(password) < 8:
+#         raise ValidationError("Password must be 8 characters or longer")
+
+
 class SignUpForm(FlaskForm):
     username = StringField(
         'username', validators=[DataRequired(), username_exists])
