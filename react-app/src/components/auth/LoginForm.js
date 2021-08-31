@@ -6,7 +6,6 @@ import "./LoginForm.css"
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([])
-  const [showModal, setShowModal] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const user = useSelector(state => state.session.user)
@@ -24,7 +23,9 @@ const LoginForm = () => {
   const handleDemo = async (e) => {
     e.preventDefault()
     setErrors([])
-    const data = await dispatch(login("demo@aa.io", "password"))
+    await setEmail("demo@aa.io")
+    await setPassword("password")
+    const data = await dispatch(login(email, password))
     if (data) {
       setErrors(data)
     }
@@ -81,14 +82,16 @@ const LoginForm = () => {
         </div>
         <div className="login-button">
           <button type="submit" id="login-submit">LOG IN</button>
-          {/* <button type="button" id="login-cancel" onClick={() => setShowModal(false)}>CANCEL</button> */}
+        </div>
+          {/* <button type="button" id="login-cancel">CANCEL</button> */}
+        <div className="demo-button">
+          <button onClick={handleDemo} id="demo-login" type="button">DEMO</button>
         </div>
       </form>
-      <div className="demo-button">
+      {/* <div className="demo-button">
         <form onSubmit={handleDemo}>
-          <button onSubmit={handleDemo} id="demo-login" type="submit">DEMO</button>
         </form>
-      </div>
+      </div> */}
     </div>
   )
 }
