@@ -1,8 +1,8 @@
 from flask import Blueprint, jsonify, request
-from sqlalchemy import or_
+from sqlalchemy import or_, insert
 import requests
 from flask_login import login_required, current_user
-from app.models import db, Books, User
+from app.models import db, Books, User, CollectionBooks
 
 books_routes = Blueprint("books", __name__)
 
@@ -63,10 +63,14 @@ def library_update(isbn):
             book_cover_url=book_cover_url,
             synopsis=synopsis,
             isbn_10=isbn_10,
-            isbn_13=isbn_13,
+            isbn_13=isbn_13
         )
         db.session.add(new_book)
         db.session.commit()
+        CollectionBooks.insert().values([
+            {"collections_id": User.default()},
+            {"book_id": new_book.id}
+        ])
         return new_book.to_dict()
     elif request.method == "DELETE":
         deleted_book = User.query.filter(

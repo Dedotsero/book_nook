@@ -1,14 +1,20 @@
 import React from "react"
-import { useDispatch } from "react-redux"
-import { createBook } from "../../store/books"
+import BookForm from "./BookForm"
+import "./BookForm.css"
 
 const AddBookButton = () => {
-  const dispatch = useDispatch()
-  const onClick = async (e) => {
-    await dispatch(createBook())
-  }
 
-  return <button onClick={onClick}>Add a Book</button>
+  return (
+    <div>
+      <div className="dropdown">
+        <button className="drop-button">Add a Book</button>
+        <div className="dropdown-content">
+          <BookForm />
+        </div>
+      </div>
+    </div>
+
+  )
 }
 
 export default AddBookButton

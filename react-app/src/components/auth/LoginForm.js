@@ -2,9 +2,11 @@ import React, { useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { Redirect } from "react-router-dom"
 import { login } from "../../store/session"
+import "./LoginForm.css"
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([])
+  const [showModal, setShowModal] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const user = useSelector(state => state.session.user)
@@ -41,38 +43,50 @@ const LoginForm = () => {
   }
 
   return (
-    <div>
+    <div id="login-form">
       <form onSubmit={onLogin}>
-        <div>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
+        <div className="login-title">
+          <h2>LOG IN</h2>
         </div>
         <div>
-          <label htmlFor="email">Email</label>
-          <input
-            name="email"
-            type="text"
-            placeholder="Email"
-            value={email}
-            onChange={updateEmail}
-          />
+          <ul>
+            {errors.map((error, ind) => (
+              <div key={ind}>{error}</div>
+            ))}
+          </ul>
         </div>
         <div>
-          <label htmlFor="password">Password</label>
-          <input
-            name="password"
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={updatePassword}
-          />
-          <button type="submit">Login</button>
+          <label id="email-label" htmlFor="email">Email</label>
+          <div className="email-login-input-container">
+            <input
+              name="email"
+              type="text"
+              placeholder="Email"
+              value={email}
+              onChange={updateEmail}
+            />
+          </div>
+        </div>
+        <div>
+          <label id="password-label" htmlFor="password">Password</label>
+          <div className="password-login-input-container">
+            <input
+              name="password"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={updatePassword}
+            />
+          </div >
+        </div>
+        <div className="login-button">
+          <button type="submit" id="login-submit">LOG IN</button>
+          {/* <button type="button" id="login-cancel" onClick={() => setShowModal(false)}>CANCEL</button> */}
         </div>
       </form>
-      <div>
+      <div className="demo-button">
         <form onSubmit={handleDemo}>
-          <button onSubmit={handleDemo} className="demo-login" type="submit">Demo Login</button>
+          <button onSubmit={handleDemo} id="demo-login" type="submit">DEMO</button>
         </form>
       </div>
     </div>

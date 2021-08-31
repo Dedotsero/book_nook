@@ -19,7 +19,7 @@
 #modal-content {
   position: absolute;
   color: white;
-  height: 35%;
+  min-height: 35%;
   width: 15%;
   display: flex;
   align-items: center;
