@@ -9,6 +9,7 @@
 .login-title {
   text-align: center;
   padding-bottom: 5%;
+  padding-top: 5%;
 }
 
 h2 {
@@ -38,21 +39,18 @@ h2 {
 
 .login-button {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   margin-left: 10%;
   margin-right: 10%;
+  padding-bottom: 2%;
 }
 
 .demo-button {
-  height: 100%;
-  width: 90%;
-  position: absolute;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-  top: 229px;
-  left: 175px
+  justify-content: space-around;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding-bottom: 5%;
 }
 
 #login-submit {
@@ -70,6 +68,7 @@ h2 {
   text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
   text-align: center;
   transition: all 0.2s;
+  font-size: 14px;
 }
 
 #login-cancel {
@@ -104,6 +103,7 @@ h2 {
   text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
   text-align: center;
   transition: all 0.2s;
+  font-size: 14px;
 }
 
 #login-submit:hover,
