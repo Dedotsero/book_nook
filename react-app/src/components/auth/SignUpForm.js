@@ -47,60 +47,71 @@ const SignUpForm = () => {
     <div id="signup-form">
       <form onSubmit={onSignUp}>
         <div>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-            ))}
+          <ul>
+            {errors.map((error, ind) => (
+              <div key={ind}>{error}</div>
+              ))}
+          </ul>
         </div>
         <div className="signup-title">
           <h2>SIGN UP</h2>
         </div>
-        <div className="username-signup-input-container">
+        <div>
           <label id="username-label">
             User Name
           </label>
-          <input
-            type="text"
-            name="username"
-            onChange={updateUsername}
-            value={username}
+          <div className="username-signup-input-container">
+            <input
+              type="text"
+              name="username"
+              onChange={updateUsername}
+              value={username}
             />
+          </div>
         </div>
-        <div className="email-signup-input-container">
+        <div>
           <label id="email-label">
             Email
           </label>
-          <input
-            type="text"
-            name="email"
-            onChange={updateEmail}
-            value={email}
+          <div className="email-signup-input-container">
+            <input
+              type="text"
+              name="email"
+              onChange={updateEmail}
+              value={email}
             />
+          </div>
         </div>
-        <div className="password-signup-input-container">
+        <div>
           <label id="password-label">
             Password
           </label>
-          <input
-            type="password"
-            name="password"
-            onChange={updatePassword}
-            value={password}
+          <div className="password-signup-input-container">
+            <input
+              type="password"
+              name="password"
+              onChange={updatePassword}
+              value={password}
             />
+          </div>
         </div>
-        <div className="confirmPassword-signup-input-container">
+        <div>
           <label id="confirmPassword-label">
             Confirm Password
           </label>
-          <input
-            type="password"
-            name="confirm_password"
-            onChange={updateConfirmPassword}
-            value={confirmPassword}
-            required={true}
+          <div className="confirmPassword-signup-input-container">
+            <input
+              type="password"
+              name="confirm_password"
+              onChange={updateConfirmPassword}
+              value={confirmPassword}
+              required={true}
             />
+          </div>
         </div>
         <div className="signup-buttons">
-          <button type="submit" id="signup-submit">Sign Up</button>
+          <button type="submit" id="signup-submit">SIGN UP</button>
+          {/* <button type="button" id="signup-cancel">CANCEL</button> */}
         </div>
       </form>
     </div>

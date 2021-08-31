@@ -6,6 +6,7 @@ class Collections(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False, default="Your Library")
+    default = db.Column(db.Boolean, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey(
         "users.id", ondelete="CASCADE"), nullable=False)
 
@@ -19,6 +20,7 @@ class Collections(db.Model):
         return {
             "id": self.id,
             "name": self.name,
+            "default": self.default,
             "user_id": self.user_id,
             "books": [b.to_dict() for b in self.books]
         }

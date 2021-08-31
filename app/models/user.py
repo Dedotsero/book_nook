@@ -1,6 +1,7 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from .collections import Collections
 
 
 class User(db.Model, UserMixin):
@@ -34,6 +35,10 @@ class User(db.Model, UserMixin):
         }
 
     def default(self):
+        default_collection = Collections.query.filter(
+            Collections.user_id == self.id,
+            Collections.default.is_(True)
+        ).one()
         return {
-
+            default_collection
         }

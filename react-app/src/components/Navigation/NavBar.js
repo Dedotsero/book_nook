@@ -2,9 +2,10 @@ import React from "react"
 import { useSelector } from "react-redux"
 import { NavLink } from "react-router-dom"
 import LogoutButton from "../auth/LogoutButton"
-import SignUpFormModal from "../auth/SignUpModal"
-import "./Navigation.css"
+import SignUpFormModal from "../auth/SignUpFormModal"
+import LoginFormModal from "../auth/LoginFormModal"
 import AddBookButton from "../Books/AddBookButton"
+import "./Navigation.css"
 
 function NavBar({ loaded }) {
   const user = useSelector(state => state.session.user)
@@ -37,8 +38,8 @@ function NavBar({ loaded }) {
       <>
         <div>
           <ul className="nav_ul">
-            <li>
-              <NavLink to="/login" className="nav_login">Login</NavLink>
+            <li className="nav_login">
+              <LoginFormModal />
             </li>
             <li className="nav_signup">
               <SignUpFormModal />
