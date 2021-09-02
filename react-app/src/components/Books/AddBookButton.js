@@ -13,7 +13,6 @@ const AddBookButton = () => {
         </div>
       </div>
     </div>
-
   )
 }
 

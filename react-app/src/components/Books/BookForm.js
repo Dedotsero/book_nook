@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { Redirect } from "react-router-dom"
 import { createBook } from "../../store/books"
@@ -19,6 +19,10 @@ const BookForm = () => {
       setErrors(data)
     }
   }
+
+  useEffect(() => {
+    dispatch(createBook())
+  }, [dispatch])
 
   const updateIsbn = (e) => {
     setIsbn(e.target.value)
@@ -41,7 +45,7 @@ const BookForm = () => {
             ))}
           </ul>
         </div>
-        <div>
+        <div className="isbn-div">
           <label id="isbn-label" htmlFor="isbn">ISBN 10/13</label>
           <div className="isbn-input-container">
             <input
@@ -54,7 +58,7 @@ const BookForm = () => {
           </div>
         </div>
         <div className="add-book-button">
-          <button type="submit" id="submit-button">Add Book</button>
+          <button type="submit" id="submit-button">Add</button>
         </div>
       </form>
     </div>

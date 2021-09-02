@@ -10,6 +10,7 @@
   text-align: center;
   padding-bottom: 5%;
   padding-top: 5%;
+  cursor: default;
 }
 
 h2 {
@@ -35,6 +36,7 @@ h2 {
   display: flex;
   justify-content: center;
   padding-bottom: 3%;
+  cursor: default;
 }
 
 .login-button {

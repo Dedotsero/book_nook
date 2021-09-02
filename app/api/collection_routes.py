@@ -53,11 +53,11 @@ def updateCollections(id):
         form = CollectionForm()
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():
-            collection.body = form.body.data
+            collection.name = form.name.data
             db.session.commit()
             return collection.to_dict()
         return {'errors': validation_errors_to_error_messages(form.errors)}
     elif request.method == "DELETE":
         db.session.delete(collection)
         db.session.commit()
-        return
+        return {'success': True}

@@ -5,7 +5,9 @@ import LogoutButton from "../auth/LogoutButton"
 import SignUpFormModal from "../auth/SignUpFormModal"
 import LoginFormModal from "../auth/LoginFormModal"
 import AddBookButton from "../Books/AddBookButton"
+import CollectionFormModal from "../Collections/CollectionFormModal"
 import "./Navigation.css"
+import UpdateCFormModal from "../Collections/UpdateCollection"
 
 function NavBar({ loaded }) {
   const user = useSelector(state => state.session.user)
@@ -19,6 +21,9 @@ function NavBar({ loaded }) {
             <NavLink to="/collections" exact={true} activeClassName="active" className="nav_li">
               Collections
             </NavLink>
+          </li>
+          <li className="nav-collection">
+            <CollectionFormModal />
           </li>
           <li className="nav_book">
             <AddBookButton />

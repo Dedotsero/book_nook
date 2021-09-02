@@ -46,25 +46,38 @@ def library_update(isbn):
             return {
                 "error": isbn_response["error"]
             }
-        # print(">>>>>>>>>>>>>>>>>", isbn_response)
+        print(">>>>>>>>>>>>>>>>>", isbn_response)
         title = isbn_response["title"]
         publication_date = isbn_response["publish_date"]
         page_count = isbn_response["number_of_pages"]
         isbn_10 = isbn_response["isbn_10"][0]
-        isbn_13 = isbn_response["isbn_13"][0]
-        aolid = isbn_response["authors"][0]["key"]
-        # print(">>>>>>>>>>>>>>>>>", aolid)
-        author_response = requests.get(f"https://openlibrary.org/{aolid}.json").json()
-        # print(">>>>>>>>>>>>>>>>>", author_response)
-        author = author_response["personal_name"]
+        if not "isbn_13" in isbn_response:
+            isbn_13 = isbn_10
+        else:
+            isbn_13 = isbn_response["isbn_13"][0]
         wolid = isbn_response["works"][0]["key"]
         # print(">>>>>>>>>>>>>>>>>", wolid)
         works_response = requests.get(f"https://openlibrary.org/{wolid}.json").json()
-        # print(">>>>>>>>>>>>>>>>>", works_response.get("description"))
-        synopsis = works_response.get("description")
-        if not synopsis:
+        # print(">>>>>>>>>>>>>>>>>", works_response)
+        if not "description" in works_response:
             synopsis = "No Description"
-        book_cover_url = f"https://covers.openlibrary.org/b/isbn/{isbn}-M.jpg"
+        else:
+            if type(works_response["description"]) == dict:
+                synopsis = works_response["description"]["value"]
+                if not synopsis:
+                    synopsis = "No Description"
+        if not "authors" in isbn_response:
+            aolid = works_response["authors"][0]["author"]["key"]
+        else:
+            aolid = isbn_response["authors"][0]["key"]
+        # print(">>>>>>>>>>>>>>>>>", aolid)
+        author_response = requests.get(f"https://openlibrary.org/{aolid}.json").json()
+        # print(">>>>>>>>>>>>>>>>>", author_response)
+        if not "personal_name" in author_response:
+            author = author_response["name"]
+        else:
+            author = author_response["personal_name"]
+        book_cover_url = f"https://covers.openlibrary.org/b/isbn/{isbn_13}-M.jpg"
         new_book = Books(
             author=author,
             title=title,
