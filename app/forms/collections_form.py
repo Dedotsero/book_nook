@@ -4,4 +4,4 @@ from wtforms.validators import DataRequired
 
 
 class CollectionForm(FlaskForm):
-    name = StringField('Name', validators=[DataRequired()])
+    name = StringField('name', validators=[DataRequired()])
